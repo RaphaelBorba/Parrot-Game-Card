@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap');
+
+body{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #EEF9BF;
+}
+h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+    padding-top: 40px;
+    padding-bottom: 47px;
+
+
+}
+.pack{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    width: 117px;
+    height: 146px;
+    margin: 17px;
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    position: relative;
+
+}
+.card img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+@media(max-width:335px){
+    body{
+        width: 100%;
+    }
+    .pack{
+        flex-direction: column;
+    }
+}
