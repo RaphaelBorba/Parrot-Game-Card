@@ -15,83 +15,82 @@ function startGame(){
     cards.sort(comparador);
     for(i in cards){
         pack.innerHTML = pack.innerHTML+cards[i]
-    }
-    console.log(cards);
-    
-    
-        
+    }       
 }
+
 function createCards(){
     cards=[];
     let counter =0;
     while(totalCards>counter){
         if(counter ===0 || counter ===1){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/bobrossparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===2 || counter ===3){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/explodyparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===4 || counter ===5){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/fiestaparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===6 || counter ===7){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/metalparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===8 || counter ===9){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/revertitparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===10 || counter ===11){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/tripletsparrot.gif" alt="">
             </div>
         </div>`)
         }else if(counter ===12 || counter ===13){
-            cards.push(`<div class="card">
-            <div class="front">
+            cards.push(`<div class="card" onclick="flipCard(this)">
+            <div class="face front">
                 <img src="imagens/front.png" alt="parrot">
             </div>
-            <div class="back">
+            <div class="face back">
                 <img src="imagens/unicornparrot.gif" alt="">
             </div>
         </div>`)
         }
         counter++;
     }
-    
+}
+function flipCard(card){
+    card.classList.toggle('flip')
 }
 function comparador() { 
 	return Math.random() - 0.5; 
