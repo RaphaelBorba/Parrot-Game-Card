@@ -1,5 +1,9 @@
 let totalCards=0;
 let cards=[];
+let card1='';
+let card2='';
+let hits=0;
+let plays=1;
 function startGame(){
     const pack = document.querySelector('.pack')
     while(true){
@@ -11,6 +15,7 @@ function startGame(){
             alert('Digite apenas números pares e menores que 15!')
         }
     }
+    pack.innerHTML='';
     createCards();
     cards.sort(comparador);
     for(i in cards){
@@ -89,8 +94,54 @@ function createCards(){
         counter++;
     }
 }
+function checkPlay(){
+    let firstCard = card1.innerHTML;
+    let secondcard = card2.innerHTML;
+    
+    if(firstCard===secondcard){
+        hits++;
+        card1='';
+        card2='';
+        if(hits*2 == totalCards){
+            alert('Você ganhou! Você fez ao total '+plays+ ' jogadas.');
+            while(true){
+                let s_n=prompt("Deseja jogar de novo? ('sim' ou 'não')");
+                if(s_n ==='sim'){
+                    hits=0;
+                    plays=0;
+                    startGame();
+                    break;
+                }else if(s_n==='não'){
+                    break;
+                }else{
+                    alert('Digite apenas sim e não')
+                }
+            }
+        }
+    }else if(card1!=='' && card2!==''){
+        setTimeout(()=>{
+            card1.classList.remove('flip')
+            card2.classList.remove('flip')
+            card1='';
+            card2='';
+        },1000)
+        
+    }
+}
 function flipCard(card){
-    card.classList.toggle('flip')
+    if(card.className.includes('flip')){
+        return;
+    }
+
+    if(card1===''){
+        card.classList.add('flip');
+        card1=card;
+    } else if(card2===''){
+        card.classList.add('flip');
+        card2=card
+        checkPlay()
+    }
+    plays++;
 }
 function comparador() { 
 	return Math.random() - 0.5; 
