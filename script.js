@@ -1,9 +1,17 @@
+
+// VARIAVEIS DO ESCOPO GLOBAL
+
 let totalCards=0;
 let cards=[];
 let card1='';
 let card2='';
 let hits=0;
-let plays=1;
+let plays=0;
+let idInterval;
+let time =0;
+
+//FUNÇÃO QUE COMEÇA O JOGO E MONTA O TABULEIRO
+
 function startGame(){
     const pack = document.querySelector('.pack')
     while(true){
@@ -22,6 +30,8 @@ function startGame(){
         pack.innerHTML = pack.innerHTML+cards[i]
     }       
 }
+
+//FUNÇÃO QUE VAI CRIAR AS CARTAS DO TABULEIRO
 
 function createCards(){
     cards=[];
@@ -94,6 +104,9 @@ function createCards(){
         counter++;
     }
 }
+
+//FUNÇÃO QUE VEREFICA AS JOGADAS E REINICIA O JOGO CASO O JOGADOR QUEIRA
+
 function checkPlay(){
     let firstCard = card1.innerHTML;
     let secondcard = card2.innerHTML;
@@ -103,20 +116,23 @@ function checkPlay(){
         card1='';
         card2='';
         if(hits*2 == totalCards){
-            alert('Você ganhou! Você fez ao total '+plays+ ' jogadas.');
+            clearInterval(idInterval);
+            setTimeout(()=>{alert('Você ganhou! Você fez ao total '+plays+ ' jogadas em '+(time-1)+' segundos.');
             while(true){
                 let s_n=prompt("Deseja jogar de novo? ('sim' ou 'não')");
                 if(s_n ==='sim'){
                     hits=0;
                     plays=0;
+                    time=0
                     startGame();
+                    startCounter()
                     break;
                 }else if(s_n==='não'){
                     break;
                 }else{
                     alert('Digite apenas sim e não')
                 }
-            }
+            }},1000); 
         }
     }else if(card1!=='' && card2!==''){
         setTimeout(()=>{
@@ -128,6 +144,24 @@ function checkPlay(){
         
     }
 }
+
+//FUNÇÃO PARA COMEÇAR A CONTAGEM DO CONTADOR
+
+function startCounter(){
+    time=0;
+    idInterval = setInterval(updateCounter,1000)
+}
+
+//FUNÇÃO PARA ATUALIZAR O CONTADOR
+
+function updateCounter(){
+    let count = document.querySelector('.count');
+    count.innerHTML= time++;
+
+}
+
+// FUNÇÃO IMPLEMENTA A CLASSE FLIP NA CARTA PARA PODER GIRAR ELA
+
 function flipCard(card){
     if(card.className.includes('flip')){
         return;
@@ -143,7 +177,14 @@ function flipCard(card){
     }
     plays++;
 }
+
+// FUNÇÃO PARA MISTURAR A LISTA DE CARDS
+
 function comparador() { 
 	return Math.random() - 0.5; 
 }
+
+// COMEÇO DO JOGO
+
 startGame()
+startCounter()
