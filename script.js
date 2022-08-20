@@ -170,12 +170,14 @@ function flipCard(card){
     if(card1===''){
         card.classList.add('flip');
         card1=card;
+        plays++;
     } else if(card2===''){
         card.classList.add('flip');
         card2=card
+        plays++;
         checkPlay()
     }
-    plays++;
+    
 }
 
 // FUNÇÃO PARA MISTURAR A LISTA DE CARDS
